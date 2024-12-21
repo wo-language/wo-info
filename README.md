@@ -1,6 +1,6 @@
 ### Wo is a fork of Go
 
-This repo is to store extra general information about Wo.
+This repo is to store extra general information about Wo. I want to make everything I worked on with this public.
 
 ---
 
@@ -18,7 +18,7 @@ if err != nil {
 would be done like this in Wo:
 
 ```go
-var file = os.Open!("hi.wo") // pending decisions here; it's a WIP
+var file = os.Open!("hi.wo")
 ```
 
 

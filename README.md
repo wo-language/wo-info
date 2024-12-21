@@ -1,32 +1,25 @@
 ### Wo is a fork of Go
 
-The Wo language offers an alternative syntax and functionality to the Go programming language. It aims to be interoperable with Go.
+This repo is to store extra general information about Wo.
 
-Here is one example.
+---
 
-Go:
+The Wo language is an interoperable successor to Go. It offers alternative syntax and language features aimed at readability.
+
+For example,
+
 ```go
-r, err := os.Open(fileName)
+f, err := os.Open("hi.wo")
 if err != nil {
-  return err
+    return nil, err
 }
 ```
-Wo:
-```go
-r = os!Open(fileName)
-```
-as well as
-```go
-r, log("Oh no: ", err) = os.Open(fileName)
-```
 
-Besides syntactical and formatting difference, it also offers a functional difference, notably the `set`:
+would be done like this in Wo:
 
 ```go
-map... etc.
+var file = os.Open!("hi.wo") // pending decisions here; it's a WIP
 ```
-
-
 
 
 ### Trademark disclaimer

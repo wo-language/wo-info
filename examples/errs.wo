@@ -1,0 +1,35 @@
+package examples
+
+func runProgram(directory <string|url>) (int, string)! { // members reversed to order by relevancy
+if !var fileName = runnableFiles[directory] {
+return errors.New("invalid filepath")
+}
+
+var reader = os.Open(fileName)!
+    defer reader.Close()!
+    reader.Sync()!
+    var program = myCompiler.build(reader)
+    return program.length(), program.outputPath() // converts it to some(int, string) and error as nil/none
+}
+
+runnableFiles map[FilePath]string = {"/app/host": "server.ts", "/": "Main.java"}
+
+func runProgram() string {
+    output, log(err) = runProgram("/")
+    return output
+}
+
+struct Program {
+    byte[...] executable
+    func outputPath() string {
+        return executable[:executable.LastIndex(".exe")]
+    }
+
+    func length() int {
+        len(executable)
+    }
+}
+
+interface FilePath {
+    string | url
+}

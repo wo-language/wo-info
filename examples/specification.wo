@@ -1,0 +1,185 @@
+package examples
+
+import "os"
+
+//Disable[Set]
+
+func main() {
+
+    var vs []int
+
+    for i, v := range vs {}
+    for i, v : vs {}
+
+    for _, v := range vs {}
+    for v : vs {}
+
+    for i := range vs {}
+    for i, _ : vs {}
+
+    if cond then A else B
+
+    primes hashset[int] = { 2, 3, 5 }  // declaration
+    ok = primes[4]                 // is ok if contains elem
+    primes.insert[7]               // insert / add
+    primes.delete[3]               // delete / remove
+
+    Some(v)
+
+    None
+
+    T?
+
+    Option[T]
+
+    Option(v)?
+
+    IsPresent() bool
+
+    Map() Option
+
+    //Print, Printf, Sprint, Sprintf, Fprint, Fprintf, Sscanf, Fscanf
+    //
+    //PrintFormat, Concat, ConcatFormat, FormatterPrint, ScanString, ScanReader
+    $set
+
+}
+
+interface{T}
+
+func f() {
+    line1()
+    return result()
+}
+
+func()
+() -> _
+func() {}
+() -> {}
+
+func(I) O
+I -> O,
+func(I) O { o() }
+i -> o()
+
+func(i I) (o O)
+(i I) -> (o O)
+
+func(f func()) (r R)
+(f() -> _) -> (r R)
+
+func() func()
+() -> () -> _,
+func() func() { return func() {}}
+() -> () -> {}
+
+func f() (T, bool)
+func f() T?
+
+type Enum enum {
+    EnumVal1(values...), EnumVal2(values...), EnumVal3(values...), ... // delim by commas or newlines
+
+    fields... // types must match with values, same style as struct fields
+}
+
+type Data enum {
+Val1(5, false, "A", "B")
+Val2(-2.2, true)
+Val3(0e3, true, "aaaaaaaa")
+
+float32 // unnamed
+ok bool // named
+...string // varargs
+}
+
+type Flags enum {
+Flag1 // 1
+Flag2 // = 2
+Flag3 // = 4
+}
+
+Flags.Full
+
+Flag1 & Flag2 &^ Flags.Full | Flag3
+
+type Sum enum {
+SumVal1 // no parens or args
+SumVal2() // empty parens to differentiate with flags
+SumVal3(fields)
+SumVal4(ExternalEnumVal, uint, named ...uint) // access uint with SumVal4.uint
+}
+
+interface{A | B}
+A | B
+
+interface{f()}
+<f()>
+
+interface{func()}
+<() -> _>
+
+type Sing = int                  // type
+type Uni  = int8 | int16         // union
+type Nest = Sing | Uni | float32 // union
+type Flip = On + Off             // flags
+type IntO = None + val Some(int) // sum
+type Pt   = (x, y int)           // tuple
+type Pair = (f Flip, IntO)       // tuple
+
+type FlipNest = (On + Off, None + Some(int | int8 | int16)) // tuple(flags, sum)
+type Combine  = ([]int, string) | A + B | <Field(int)>                    // union(tuple, sum, functional interface)
+type Tagged   = (a []int, b string) | c A + B | <d Field(int)>                    // union(tuple, sum, functional interface)
+
+type Length enum {
+Cm(float32)
+M(float32)
+FtInch(int, float32)
+}
+
+func main1() {
+    var x = 3 // error: Unused variable 'x'
+}
+
+type Errable[T] = T + error
+
+T: no error occured
+err: an error occured, err
+
+var file                       = os.Open("hi.wo")!  // return err
+var file, log("Error:", err)   = os.Open("hi.wo")
+var file, handle(err)          = os.Open("hi.wo")!  // handle and throw
+var file, return(none, 3, err) = os.Open("hi.wo")   // with other return values
+var file, if(err)              = os.Open("hi.wo") { handle(err) } // similar to Swift's try?
+if var file                    = os.Open("hi.wo") { /*main code*/ }    // Swift/Rust
+var file                       = os.Open("hi.wo")!! // panic
+var file                       = os.Open("hi.wo")?  // unwrap or panic
+var file                       = os.Open("hi.wo").orElse(newFile)
+//var file                       = os.Open("hi.wo")? else newFile
+
+
+func f() (T, err)
+func f() T! // formatting AND interpretation from .go functions
+
+
+func (length Length) ToInches() float32 {
+    return switch length {
+    case Cm(cm) => cm / 2.54
+    case M(m) => m / 0.0254
+    case FtInch(ft, in) => float32(ft) * 12 + in
+    }
+}
+
+func combineThem(strings /* Wo Error */ []string) string {
+    return strings.Join /* Go error */ (strings, ", ")
+}
+
+func payWith(cash) {}
+func payWith(creditCardInfo) {}
+func payWith(creditCardNumber, zipCode) {}
+func payWith(creditCardNumber, city, state) {}
+
+
+export func Sew(string) {}
+
+func innerSew(string) {} // is not visible publicly
+

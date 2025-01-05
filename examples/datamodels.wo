@@ -1,0 +1,43 @@
+package examples
+
+type Camera[I Image] = (model CameraModel, memory []I)
+
+type CameraModel = A7R_IV(Sony(alpha, 7, 1)) + D300S(Nikon(D | S, 300)) + Z9(Nikon(Z, 9))
+
+type Image = [][]uint32 | [][]uint8
+
+func NewCamera[I Image](model CameraModel) Camera[I] {
+    return (model, make([]I, 0))
+}
+
+   enum
+
+func test() {
+    c := NewCamera[[][]uint8](D300S)
+    fmt.Println()
+}
+
+// The above should replicate all of the functionality of datamodels.go, although with some less unneeded type specificity
+
+// These are implemented by default
+// func Sum.String() string = Members.Join(" ")
+// func Flag.Name() string
+// func Flag.String() string == uint.String()
+// func Flags.List() List[Flag]
+// func List.Map(f) List
+// anything with List() can also do Map(f) with interfaces
+// func Flags.String() string = Map(Name).Join("")
+
+// String() has a default, but here's a custom implementation:
+
+type Brand = Sony(SonySeries alpha + NEX + Cyber, uint8) + Nikon(NikonSeries Z + D + H + X + A + E + N + S, uint32)
+
+const NikonSeriesPrefixes = D | E | Z | F
+const NikonSeriesSuffixes = NikonSeries.Full &^ NikonSeriesPrefixes
+
+func (brand Brand) String() string {
+    return switch brand {
+    Sony => brand
+    Nikon(ns, i) => (ns & NikonSeriesPrefixes).Map(Name).Merge(brand).Merge(ns & NikonSeriesSuffixes).Join("")
+    }
+}

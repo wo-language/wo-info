@@ -6,6 +6,12 @@ import (
     "strings"
 )
 
+func testE() {
+    var z = map[int]int{1: 1}[1]
+}
+
+type url = string
+
 type FilePath interface {
     string | url
 }

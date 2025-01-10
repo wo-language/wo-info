@@ -2,6 +2,8 @@
 
 This repo is to store extra general information about Wo. I want to make everything I worked on with this public.
 
+[See more here.](https://github.com/wo-language/wo/tree/release-branch.go1.23.wo?tab=readme-ov-file#wo-is-a-fork-of-go)
+
 ---
 
 The Wo language is an interoperable successor to Go. It offers alternative syntax and language features aimed at readability.
@@ -18,9 +20,10 @@ if err != nil {
 would be done like this in Wo:
 
 ```go
-var file = os.Open!("hi.wo")
+var file = os.Open("hi.wo")!
 ```
 
+[...see more here.](https://github.com/wo-language/wo/tree/release-branch.go1.23.wo?tab=readme-ov-file#wo-is-a-fork-of-go)
 
 ### Trademark disclaimer
 
